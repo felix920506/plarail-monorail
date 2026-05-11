@@ -6,7 +6,7 @@ include <plarail_connector.scad>
 // The rail centerline is at curve_radius from the origin.
 // Cross-section width is radial; cross-section height is Z.
 
-part = "curve"; // "curve", "body", "connector_coupon", "profile_sample", "debug"
+part = "curve"; // "curve", "body", "connector_coupon", "quick_connector_coupon", "profile_sample", "debug"
 
 module _rounded_rect_2d(width, height, radius) {
     safe_radius = min(radius, min(width, height) / 2);
@@ -137,6 +137,8 @@ if (part == "curve") {
     curved_rail_body();
 } else if (part == "connector_coupon") {
     connector_coupon();
+} else if (part == "quick_connector_coupon") {
+    quick_connector_coupon();
 } else if (part == "profile_sample") {
     straight_profile_sample();
 } else if (part == "debug") {

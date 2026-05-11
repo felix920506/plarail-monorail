@@ -65,18 +65,18 @@ module female_connector_cutout(
         _connector_prism(depth + 2 * eps, cut_width, cut_height, cut_neck_width, taper_length);
 }
 
-module male_connector_coupon() {
+module male_connector_coupon(body_length = coupon_body_length) {
     union() {
-        translate([-coupon_body_length, -rail_width / 2, -rail_height / 2])
-            cube([coupon_body_length, rail_width, rail_height]);
+        translate([-body_length, -rail_width / 2, -rail_height / 2])
+            cube([body_length, rail_width, rail_height]);
         male_connector();
     }
 }
 
-module female_connector_coupon() {
+module female_connector_coupon(body_length = coupon_body_length) {
     difference() {
         translate([0, -rail_width / 2, -rail_height / 2])
-            cube([coupon_body_length, rail_width, rail_height]);
+            cube([body_length, rail_width, rail_height]);
         female_connector_cutout();
     }
 }
@@ -91,6 +91,28 @@ module connector_coupon(kind = "pair") {
             male_connector_coupon();
         translate([0, (rail_width + coupon_gap) / 2, 0])
             female_connector_coupon();
+    }
+}
+
+module quick_male_connector_coupon() {
+    male_connector_coupon(body_length = quick_coupon_male_body_length);
+}
+
+module quick_female_connector_coupon() {
+    quick_body_length = connector_socket_depth + quick_coupon_female_body_extra;
+    female_connector_coupon(body_length = quick_body_length);
+}
+
+module quick_connector_coupon(kind = quick_connector_kind) {
+    if (kind == "male") {
+        quick_male_connector_coupon();
+    } else if (kind == "female") {
+        quick_female_connector_coupon();
+    } else {
+        translate([0, -(rail_width + coupon_gap) / 2, 0])
+            quick_male_connector_coupon();
+        translate([0, (rail_width + coupon_gap) / 2, 0])
+            quick_female_connector_coupon();
     }
 }
 

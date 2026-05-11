@@ -27,6 +27,7 @@ Generated mesh files are ignored by default. Commit exported meshes only after p
 - `curve`: full curve with the configured connector layout.
 - `body`: curve body without connector subtraction/union.
 - `connector_coupon`: male and female connector test coupons.
+- `quick_connector_coupon`: very short male and female connector test coupons.
 - `profile_sample`: short straight rail-profile sample.
 - `debug`: curve body with colored end-section markers.
 

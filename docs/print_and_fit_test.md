@@ -8,8 +8,23 @@ Run these from the repository root after installing OpenSCAD.
 
 ```sh
 openscad -o exports/connector_coupon.stl -D 'part="connector_coupon"' src/plarail_curve.scad
+openscad -o exports/quick_connector_coupon.stl -D 'part="quick_connector_coupon"' src/plarail_curve.scad
 openscad -o exports/profile_sample.stl -D 'part="profile_sample"' src/plarail_curve.scad
 openscad -o exports/plarail_curve.stl -D 'part="curve"' src/plarail_curve.scad
+```
+
+To export individual quick connector coupons:
+
+```sh
+openscad -o exports/quick_male_connector_coupon.stl \
+  -D 'part="quick_connector_coupon"' \
+  -D 'quick_connector_kind="male"' \
+  src/plarail_curve.scad
+
+openscad -o exports/quick_female_connector_coupon.stl \
+  -D 'part="quick_connector_coupon"' \
+  -D 'quick_connector_kind="female"' \
+  src/plarail_curve.scad
 ```
 
 To test alternate connector layouts:
@@ -23,11 +38,12 @@ openscad -o exports/plarail_curve_female_start.stl \
 
 ## Recommended Print Order
 
-1. Print `connector_coupon.stl` in PLA for a fast first fit check.
+1. Print `quick_connector_coupon.stl` in PLA for the fastest first fit check.
 2. Adjust `connector_clearance` in `src/dimensions.scad` until the male connector inserts without excessive force and the female socket does not wobble.
-3. Print `profile_sample.stl` and verify the Shonan Monorail 5000 vehicle clears the rail profile when used in the intended orientation.
-4. Print one full curve in PETG after connector and profile checks pass.
-5. Print additional curves only after the first full curve closes cleanly with original parts.
+3. Print `connector_coupon.stl` if the quick coupon passes and you want a larger handling/retention sample.
+4. Print `profile_sample.stl` and verify the Shonan Monorail 5000 vehicle clears the rail profile when used in the intended orientation.
+5. Print one full curve in PETG after connector and profile checks pass.
+6. Print additional curves only after the first full curve closes cleanly with original parts.
 
 ## Default Slicer Settings
 
