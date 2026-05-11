@@ -1,0 +1,14 @@
+# OpenSCAD / slicer outputs
+build/
+exports/
+*.stl
+*.3mf
+*.amf
+*.off
+*.csg
+*.png
+
+# macOS / editor noise
+.DS_Store
+*.swp
+*.swo
