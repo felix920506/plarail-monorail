@@ -32,3 +32,6 @@ connector_vertical_offset = 0.0;
 
 coupon_body_length = 30.0;
 coupon_gap = 12.0;
+
+curve_connector_layout = "male_start_female_end";
+debug_cross_sections = false;
